@@ -8,20 +8,13 @@
 :root{
   --bg:#f2f7f7; --card:#ffffff; --ink:#123; --muted:#6b7f86;
   --brand:#0fb3a6; --brand-d:#0a8f85; --brand-l:#e5f7f5;
-  --accent:#ff8a5b; --good:#22b07d; --line:#e4edee; --shadow:0 6px 18px rgba(15,90,85,.08);
+  --accent:#ff8a5b; --accent-l:#fff2ec; --good:#22b07d; --line:#e4edee; --shadow:0 6px 18px rgba(15,90,85,.08);
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
-body{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-  background:var(--bg); color:var(--ink); -webkit-tap-highlight-color:transparent;
-  padding-bottom:76px;
-}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-tap-highlight-color:transparent;padding-bottom:76px}
 .wrap{max-width:520px;margin:0 auto;padding:0 14px}
-header{
-  background:linear-gradient(160deg,var(--brand),var(--brand-d));
-  color:#fff;padding:22px 16px 18px;border-radius:0 0 22px 22px;box-shadow:var(--shadow);
-}
+header{background:linear-gradient(160deg,var(--brand),var(--brand-d));color:#fff;padding:22px 16px 18px;border-radius:0 0 22px 22px;box-shadow:var(--shadow)}
 header .h-in{max-width:520px;margin:0 auto}
 header h1{margin:0;font-size:21px;font-weight:800;letter-spacing:.2px}
 header p{margin:4px 0 0;font-size:13px;opacity:.92}
@@ -30,13 +23,20 @@ header p{margin:4px 0 0;font-size:13px;opacity:.92}
 @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .card{background:var(--card);border-radius:16px;padding:16px;box-shadow:var(--shadow);margin-bottom:14px;border:1px solid var(--line)}
 .card h2{margin:0 0 4px;font-size:16px}
-.muted{color:var(--muted);font-size:13px}
+.muted,.lbl{color:var(--muted);font-size:13px}
 .section-title{font-size:14px;font-weight:700;color:var(--brand-d);margin:2px 4px 10px;text-transform:uppercase;letter-spacing:.5px}
+.big{font-size:34px;font-weight:800;line-height:1}
 
 /* Tracker */
-.streak{display:flex;align-items:center;gap:12px;background:linear-gradient(160deg,var(--brand-l),#fff);border:1px solid var(--line)}
-.streak .big{font-size:34px;font-weight:800;color:var(--brand-d);line-height:1}
-.streak .lbl{font-size:13px;color:var(--muted)}
+.rowflex{display:flex;align-items:center;gap:12px}
+.streak{background:linear-gradient(160deg,var(--brand-l),#fff)}
+.streak .big{color:var(--brand-d)}
+.pts .big{color:var(--accent)}
+.pbar{height:10px;background:#eef3f3;border-radius:8px;overflow:hidden;margin:12px 0 8px}
+.pfill{height:100%;background:linear-gradient(90deg,var(--accent),#ffb08a);border-radius:8px;transition:width .3s}
+.reward{background:var(--accent-l);border:1px dashed #f3c1a6;border-radius:12px;padding:10px 12px;font-size:13px;color:#8a5a3b}
+.reward b{color:#c25a2c}
+.editr{color:var(--accent);font-weight:700;font-size:12px;float:right}
 .date{font-size:13px;color:var(--muted);margin:0 4px 8px}
 .task{display:flex;align-items:center;gap:12px;padding:12px;border:1.5px solid var(--line);border-radius:14px;margin-bottom:10px;cursor:pointer;transition:.15s;background:#fff}
 .task:active{transform:scale(.99)}
@@ -58,25 +58,23 @@ header p{margin:4px 0 0;font-size:13px;opacity:.92}
 .rec .v b{display:block;font-size:14px}
 .rec .v span{font-size:13px;color:var(--muted)}
 
-/* Buy cards */
+/* Buy */
 .prod{display:flex;gap:12px;align-items:center}
-.prod .emoji{font-size:30px;width:46px;height:46px;border-radius:12px;background:var(--brand-l);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.prod .emoji{font-size:28px;width:46px;height:46px;border-radius:12px;background:var(--brand-l);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
 .prod .info{flex:1}
 .prod .info b{font-size:15px}
 .prod .info p{margin:2px 0 0;font-size:12px;color:var(--muted)}
 .btn{display:inline-block;background:var(--brand);color:#fff;text-decoration:none;padding:9px 14px;border-radius:12px;font-weight:700;font-size:13px;border:none}
-.btn.ghost{background:var(--brand-l);color:var(--brand-d)}
 
-/* Useful list */
+/* Useful */
 .link{display:flex;gap:12px;align-items:center;text-decoration:none;color:inherit;padding:12px 0;border-bottom:1px solid var(--line)}
 .link:last-child{border-bottom:0}
 .link .em{font-size:24px;width:34px;text-align:center}
 .link .tx b{font-size:15px;display:block}
 .link .tx span{font-size:12px;color:var(--muted)}
 .link .go{margin-left:auto;color:var(--brand);font-size:18px}
-.pill{display:inline-block;font-size:11px;font-weight:700;color:var(--accent);background:#fff2ec;padding:2px 8px;border-radius:10px;margin-left:6px;vertical-align:middle}
+.pill{display:inline-block;font-size:11px;font-weight:700;color:var(--accent);background:var(--accent-l);padding:2px 8px;border-radius:10px;margin-left:6px;vertical-align:middle}
 
-/* Nav */
 nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:flex;box-shadow:0 -4px 14px rgba(0,0,0,.05);z-index:20}
 nav button{flex:1;background:none;border:none;padding:9px 4px 8px;font-family:inherit;color:var(--muted);font-size:11px;font-weight:600;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px}
 nav button .ni{font-size:20px}
@@ -89,37 +87,47 @@ nav button.on{color:var(--brand-d)}
 
 <header><div class="h-in">
   <h1>🦷 Гигиена полости рта</h1>
-  <p>Трекер привычек, подбор пасты и щётки, полезные материалы</p>
+  <p>Трекер, звёзды за уход, подбор пасты и щётки, материалы</p>
 </div></header>
 
 <div class="wrap">
 
-  <!-- ===== ТРЕКЕР ===== -->
+  <!-- ТРЕКЕР -->
   <section class="tab active" id="t-tracker">
-    <div class="card streak">
+    <div class="card streak rowflex">
       <div class="big" id="streakNum">0</div>
       <div><div style="font-weight:700">дней подряд 🔥</div><div class="lbl">Чистим зубы утром и вечером</div></div>
     </div>
+
+    <div class="card pts">
+      <div class="rowflex">
+        <div class="big" id="ptsNum">0</div>
+        <div><div style="font-weight:700">⭐ звёзд в этом месяце</div><div class="lbl" id="ptsMonth"></div></div>
+      </div>
+      <div class="pbar"><div class="pfill" id="pfill"></div></div>
+      <div class="reward" id="reward"><span class="editr" id="editR">изменить ✏️</span>🎁 Награда в конце месяца: <b id="rewardTxt"></b></div>
+    </div>
+
     <div class="date" id="today"></div>
     <div id="tasks"></div>
     <div class="motiv" id="motiv"></div>
   </section>
 
-  <!-- ===== ПОДБОР ===== -->
+  <!-- ПОДБОР -->
   <section class="tab" id="t-age">
     <div class="edit-hint">✏️ Пример-заглушка. Айнура, проверьте и отредактируйте рекомендации под свою методику.</div>
-    <div class="section-title">Выберите возраст</div>
+    <div class="section-title">Выберите возраст / случай</div>
     <div class="chips" id="ageChips"></div>
     <div class="card rec" id="ageRec"></div>
   </section>
 
-  <!-- ===== КУПИТЬ ===== -->
+  <!-- КУПИТЬ -->
   <section class="tab" id="t-buy">
     <div class="edit-hint">✏️ Пример-заглушка. Вставьте реальные товары и свои ссылки (маркетплейсы/аптеки).</div>
     <div id="products"></div>
   </section>
 
-  <!-- ===== ПОЛЕЗНОЕ ===== -->
+  <!-- ПОЛЕЗНОЕ -->
   <section class="tab" id="t-useful">
     <div class="edit-hint">✏️ Пример-заглушка. Добавьте свои статьи, гайды и записи эфиров со ссылками.</div>
     <div class="card"><div id="useful"></div></div>
@@ -136,140 +144,146 @@ nav button.on{color:var(--brand-d)}
 </nav>
 
 <script>
-/* ---------- Навигация ---------- */
 document.querySelectorAll('nav button').forEach(b=>{
   b.onclick=()=>{
-    document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));
-    b.classList.add('on');
+    document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
     document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-    document.getElementById(b.dataset.tab).classList.add('active');
-    window.scrollTo(0,0);
+    document.getElementById(b.dataset.tab).classList.add('active');window.scrollTo(0,0);
   };
 });
 
-/* ---------- ТРЕКЕР ---------- */
+/* ---------- ТРЕКЕР + ЗВЁЗДЫ ---------- */
 const TASKS=[
   {id:'am',ic:'🌅',t:'Чистка утром',s:'2 минуты, после завтрака'},
   {id:'pm',ic:'🌙',t:'Чистка вечером',s:'2 минуты, перед сном'},
   {id:'floss',ic:'🧵',t:'Зубная нить / ёршик',s:'1 раз в день'},
   {id:'tongue',ic:'👅',t:'Чистка языка',s:'скребком или щёткой'},
 ];
-const KEY='oralhy_v1';
+const KEY='oralhy_v1', RKEY='oralhy_reward', GOAL=100;
 function load(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}}
 function save(d){localStorage.setItem(KEY,JSON.stringify(d))}
 function todayKey(){const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()}
-function fmtDate(){const d=new Date();return d.toLocaleDateString('ru-RU',{weekday:'long',day:'numeric',month:'long'})}
+function fmtDate(){return new Date().toLocaleDateString('ru-RU',{weekday:'long',day:'numeric',month:'long'})}
 
 function renderTasks(){
-  const data=load(); const tk=todayKey(); const day=data[tk]||{};
-  const box=document.getElementById('tasks'); box.innerHTML='';
+  const data=load(),tk=todayKey(),day=data[tk]||{},box=document.getElementById('tasks');box.innerHTML='';
   TASKS.forEach(t=>{
-    const done=!!day[t.id];
-    const el=document.createElement('div');
+    const done=!!day[t.id],el=document.createElement('div');
     el.className='task'+(done?' done':'');
     el.innerHTML=`<div class="ic">${t.ic}</div><div class="t">${t.t}<small>${t.s}</small></div><div class="check">${done?'✓':''}</div>`;
-    el.onclick=()=>{
-      const d=load(); if(!d[tk])d[tk]={}; d[tk][t.id]=!d[tk][t.id]; save(d); renderTasks(); updateStreak();
-    };
+    el.onclick=()=>{const d=load();if(!d[tk])d[tk]={};d[tk][t.id]=!d[tk][t.id];save(d);renderAll();};
     box.appendChild(el);
   });
   document.getElementById('today').textContent=fmtDate();
-  const all=TASKS.every(t=>day[t.id]);
-  const core=day.am&&day.pm;
-  document.getElementById('motiv').textContent = all?'🎉 Идеально! Все привычки выполнены':core?'👍 Отлично, зубы вычищены!':'Отметьте, что уже сделали сегодня';
+  const all=TASKS.every(t=>day[t.id]),core=day.am&&day.pm;
+  document.getElementById('motiv').textContent=all?'🎉 Идеально! Все привычки выполнены — +'+TASKS.length+' ⭐':core?'👍 Отлично, зубы вычищены!':'Отметьте, что уже сделали сегодня';
 }
 function updateStreak(){
-  const data=load(); let streak=0; const d=new Date();
+  const data=load();let s=0;const d=new Date();
   for(let i=0;i<400;i++){
-    const k=d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
-    const day=data[k];
-    if(day&&day.am&&day.pm){streak++; d.setDate(d.getDate()-1);}
-    else{ if(i===0){d.setDate(d.getDate()-1); continue;} break; }
+    const k=d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(),day=data[k];
+    if(day&&day.am&&day.pm){s++;d.setDate(d.getDate()-1);}
+    else{if(i===0){d.setDate(d.getDate()-1);continue;}break;}
   }
-  document.getElementById('streakNum').textContent=streak;
+  document.getElementById('streakNum').textContent=s;
 }
-renderTasks(); updateStreak();
+function renderPoints(){
+  const data=load(),d=new Date(),y=d.getFullYear(),m=d.getMonth()+1;let pts=0;
+  Object.keys(data).forEach(k=>{const p=k.split('-');if(+p[0]===y&&+p[1]===m){const day=data[k];TASKS.forEach(t=>{if(day[t.id])pts++;});}});
+  document.getElementById('ptsNum').textContent=pts;
+  document.getElementById('ptsMonth').textContent='Цель: '+GOAL+' ⭐ · '+d.toLocaleDateString('ru-RU',{month:'long'});
+  document.getElementById('pfill').style.width=Math.min(100,pts/GOAL*100)+'%';
+  document.getElementById('rewardTxt').textContent=localStorage.getItem(RKEY)||'впишите награду 🎁';
+}
+document.getElementById('editR').onclick=()=>{
+  const cur=localStorage.getItem(RKEY)||'';
+  const v=prompt('Какая награда в конце месяца, если наберём '+GOAL+' звёзд?',cur);
+  if(v!==null){localStorage.setItem(RKEY,v.trim());renderPoints();}
+};
+function renderAll(){renderTasks();updateStreak();renderPoints();}
+renderAll();
 
-/* ---------- ПОДБОР ПО ВОЗРАСТУ (заглушки — отредактировать) ---------- */
+/* ---------- ПОДБОР (заглушки — отредактировать) ---------- */
 const AGES=[
   {id:'0-3',label:'0–3 года',rec:[
     ['🦷','Паста','Фторид 1000 ppm, объём «с рисовое зёрнышко» (мазок)'],
-    ['🪥','Щётка','Мягкая, маленькая головка, толстая ручка; или напальчник до появления зубов'],
+    ['🪥','Щётка','Мягкая, маленькая головка, толстая ручка'],
     ['👪','Кто чистит','Чистит взрослый, 2 раза в день'],
     ['💡','Совет','Не полоскать активно — просто сплюнуть излишки'],
   ]},
   {id:'3-6',label:'3–6 лет',rec:[
     ['🦷','Паста','Фторид 1000 ppm, объём «с горошину»'],
     ['🪥','Щётка','Мягкая, детская, менять раз в 3 мес'],
-    ['👪','Кто чистит','Ребёнок под контролем взрослого'],
-    ['💡','Совет','Учим технике; таймер на 2 минуты'],
+    ['🔴','Индикатор налёта','1–2 раза в неделю: окрашивает налёт — видно, где недочистили'],
+    ['👪','Кто чистит','Ребёнок под контролем взрослого; таймер 2 мин'],
   ]},
   {id:'6-12',label:'6–12 лет',rec:[
     ['🦷','Паста','Фторид 1450 ppm, объём «с горошину»'],
-    ['🪥','Щётка','Мягкая/средняя; смена молочных зубов — аккуратно'],
-    ['🧵','Дополнительно','Зубная нить, при брекетах — ёршики'],
-    ['💡','Совет','Контроль родителей до уверенной техники'],
+    ['🪥','Щётка','Мягкая/средняя; смена зубов — аккуратно'],
+    ['🧵','Дополнительно','Зубная нить каждый день'],
+    ['🔴','Индикатор налёта','1–2 раза в неделю для контроля чистки'],
+    ['👪','Совет','Контроль родителей до уверенной техники'],
   ]},
   {id:'teen',label:'Подросток',rec:[
     ['🦷','Паста','Фторид 1450 ppm'],
     ['🪥','Щётка','Мягкая/средняя или электрическая'],
-    ['🧵','Дополнительно','Нить/ирригатор; при брекетах — особый уход'],
-    ['💡','Совет','Ополаскиватель по показаниям'],
+    ['🧵','Дополнительно','Нить/ирригатор; ополаскиватель по показаниям'],
+    ['🔴','Индикатор налёта','полезен для самоконтроля'],
+  ]},
+  {id:'braces',label:'😬 Брекеты',rec:[
+    ['🧹','Ёршики','чистка между брекетами и под дугой — обязательно'],
+    ['🪥','Монопучковая щётка','точечно вокруг каждого брекета'],
+    ['🧵','Суперфлосс','нить с жёстким кончиком заводится под дугу'],
+    ['💧','Ирригатор','вымывает остатки пищи из-под конструкции'],
+    ['🔴','Индикатор налёта','особенно важен — видно белые пятна риска'],
+    ['💦','Ополаскиватель с фтором','профилактика деминерализации (белых пятен)'],
+    ['🕯️','Ортодонтический воск','если брекет натирает слизистую'],
   ]},
   {id:'adult',label:'Взрослый',rec:[
     ['🦷','Паста','Фторид 1450 ppm; спец-пасты по показаниям'],
     ['🪥','Щётка','Мягкая/средняя или электрическая'],
     ['🧵','Дополнительно','Нить/ёршики/ирригатор ежедневно'],
-    ['💡','Совет','Профгигиена у стоматолога 1–2 раза в год'],
+    ['🩺','Совет','Профгигиена у стоматолога 1–2 раза в год'],
   ]},
   {id:'preg',label:'Беременность',rec:[
     ['🦷','Паста','Фторид 1450 ppm; мягкий уход за дёснами'],
     ['🪥','Щётка','Мягкая; при тошноте — паста без резкого вкуса'],
-    ['🩺','Важно','Наблюдение у стоматолога, дёсны более чувствительны'],
+    ['🩺','Важно','Дёсны чувствительнее — наблюдение у стоматолога'],
     ['💡','Совет','Тщательная гигиена — профилактика гингивита беременных'],
   ]},
 ];
 const chips=document.getElementById('ageChips');
-AGES.forEach((a,i)=>{
-  const c=document.createElement('div'); c.className='chip'+(i===0?' active':''); c.textContent=a.label;
-  c.onclick=()=>{document.querySelectorAll('#ageChips .chip').forEach(x=>x.classList.remove('active'));c.classList.add('active');showAge(a)};
-  chips.appendChild(c);
-});
-function showAge(a){
-  document.getElementById('ageRec').innerHTML=a.rec.map(r=>`<div class="row"><div class="k">${r[0]}</div><div class="v"><b>${r[1]}</b><span>${r[2]}</span></div></div>`).join('');
-}
+AGES.forEach((a,i)=>{const c=document.createElement('div');c.className='chip'+(i===0?' active':'');c.textContent=a.label;
+  c.onclick=()=>{document.querySelectorAll('#ageChips .chip').forEach(x=>x.classList.remove('active'));c.classList.add('active');showAge(a)};chips.appendChild(c);});
+function showAge(a){document.getElementById('ageRec').innerHTML=a.rec.map(r=>`<div class="row"><div class="k">${r[0]}</div><div class="v"><b>${r[1]}</b><span>${r[2]}</span></div></div>`).join('');}
 showAge(AGES[0]);
 
-/* ---------- КУПИТЬ (заглушки — вставить свои ссылки) ---------- */
+/* ---------- КУПИТЬ (заглушки — вставить ссылки) ---------- */
 const PRODUCTS=[
   {em:'🪥',n:'Детская мягкая щётка',d:'0–6 лет, маленькая головка',url:'#'},
   {em:'🦷',n:'Паста с фтором 1000 ppm',d:'для малышей',url:'#'},
   {em:'🦷',n:'Паста с фтором 1450 ppm',d:'дети 6+ и взрослые',url:'#'},
+  {em:'🔴',n:'Индикатор налёта',d:'таблетки/раствор — окрашивают налёт',url:'#'},
   {em:'🧵',n:'Зубная нить',d:'ежедневный уход',url:'#'},
+  {em:'🧹',n:'Ёршики межзубные',d:'для брекетов и промежутков',url:'#'},
+  {em:'🪥',n:'Монопучковая щётка',d:'вокруг брекетов',url:'#'},
+  {em:'🧵',n:'Суперфлосс',d:'нить для брекетов и мостов',url:'#'},
   {em:'💧',n:'Ирригатор',d:'для брекетов и имплантов',url:'#'},
+  {em:'🕯️',n:'Ортодонтический воск',d:'если натирает',url:'#'},
   {em:'👅',n:'Скребок для языка',d:'свежее дыхание',url:'#'},
 ];
-document.getElementById('products').innerHTML=PRODUCTS.map(p=>`
-  <div class="card prod">
-    <div class="emoji">${p.em}</div>
-    <div class="info"><b>${p.n}</b><p>${p.d}</p></div>
-    <a class="btn" href="${p.url}" target="_blank" rel="noopener">Купить</a>
-  </div>`).join('');
+document.getElementById('products').innerHTML=PRODUCTS.map(p=>`<div class="card prod"><div class="emoji">${p.em}</div><div class="info"><b>${p.n}</b><p>${p.d}</p></div><a class="btn" href="${p.url}" target="_blank" rel="noopener">Купить</a></div>`).join('');
 
-/* ---------- ПОЛЕЗНОЕ (заглушки — добавить свои материалы) ---------- */
+/* ---------- ПОЛЕЗНОЕ (заглушки — добавить материалы) ---------- */
 const USEFUL=[
+  {em:'🎥',t:'Индикатор налёта: как пользоваться',s:'Видео · как показать ребёнку налёт',tag:'Эфир',url:'#'},
+  {em:'🎥',t:'Гигиена при брекетах',s:'Видео · ёршики, суперфлосс, ирригатор',tag:'Эфир',url:'#'},
   {em:'📄',t:'Как правильно чистить зубы',s:'Гайд · 3 мин',tag:'Гайд',url:'#'},
-  {em:'🎥',t:'Запись эфира: гигиена у детей',s:'Видео · 20 мин',tag:'Эфир',url:'#'},
+  {em:'🎥',t:'Гигиена у детей 3–6 лет',s:'Запись эфира · 20 мин',tag:'Эфир',url:'#'},
   {em:'📄',t:'Когда вести ребёнка к ортодонту',s:'Статья',tag:'Статья',url:'#'},
-  {em:'📄',t:'Уход при брекетах',s:'Гайд',tag:'Гайд',url:'#'},
-  {em:'🎥',t:'Мифы о фторе',s:'Видео',tag:'Эфир',url:'#'},
+  {em:'📄',t:'Мифы о фторе',s:'Статья',tag:'Статья',url:'#'},
 ];
-document.getElementById('useful').innerHTML=USEFUL.map(u=>`
-  <a class="link" href="${u.url}" target="_blank" rel="noopener">
-    <div class="em">${u.em}</div>
-    <div class="tx"><b>${u.t}<span class="pill">${u.tag}</span></b><span>${u.s}</span></div>
-    <div class="go">›</div>
-  </a>`).join('');
+document.getElementById('useful').innerHTML=USEFUL.map(u=>`<a class="link" href="${u.url}" target="_blank" rel="noopener"><div class="em">${u.em}</div><div class="tx"><b>${u.t}<span class="pill">${u.tag}</span></b><span>${u.s}</span></div><div class="go">›</div></a>`).join('');
 </script>
 </body>
 </html>
