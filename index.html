@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Гигиена полости рта</title>
+<style>
+:root{
+  --bg:#f2f7f7; --card:#ffffff; --ink:#123; --muted:#6b7f86;
+  --brand:#0fb3a6; --brand-d:#0a8f85; --brand-l:#e5f7f5;
+  --accent:#ff8a5b; --good:#22b07d; --line:#e4edee; --shadow:0 6px 18px rgba(15,90,85,.08);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  background:var(--bg); color:var(--ink); -webkit-tap-highlight-color:transparent;
+  padding-bottom:76px;
+}
+.wrap{max-width:520px;margin:0 auto;padding:0 14px}
+header{
+  background:linear-gradient(160deg,var(--brand),var(--brand-d));
+  color:#fff;padding:22px 16px 18px;border-radius:0 0 22px 22px;box-shadow:var(--shadow);
+}
+header .h-in{max-width:520px;margin:0 auto}
+header h1{margin:0;font-size:21px;font-weight:800;letter-spacing:.2px}
+header p{margin:4px 0 0;font-size:13px;opacity:.92}
+.tab{display:none;padding-top:16px;animation:fade .25s ease}
+.tab.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.card{background:var(--card);border-radius:16px;padding:16px;box-shadow:var(--shadow);margin-bottom:14px;border:1px solid var(--line)}
+.card h2{margin:0 0 4px;font-size:16px}
+.muted{color:var(--muted);font-size:13px}
+.section-title{font-size:14px;font-weight:700;color:var(--brand-d);margin:2px 4px 10px;text-transform:uppercase;letter-spacing:.5px}
+
+/* Tracker */
+.streak{display:flex;align-items:center;gap:12px;background:linear-gradient(160deg,var(--brand-l),#fff);border:1px solid var(--line)}
+.streak .big{font-size:34px;font-weight:800;color:var(--brand-d);line-height:1}
+.streak .lbl{font-size:13px;color:var(--muted)}
+.date{font-size:13px;color:var(--muted);margin:0 4px 8px}
+.task{display:flex;align-items:center;gap:12px;padding:12px;border:1.5px solid var(--line);border-radius:14px;margin-bottom:10px;cursor:pointer;transition:.15s;background:#fff}
+.task:active{transform:scale(.99)}
+.task.done{background:var(--brand-l);border-color:var(--brand)}
+.task .ic{font-size:22px;width:30px;text-align:center}
+.task .t{flex:1;font-weight:600;font-size:15px}
+.task .t small{display:block;font-weight:400;color:var(--muted);font-size:12px}
+.check{width:26px;height:26px;border-radius:50%;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;flex:0 0 auto}
+.task.done .check{background:var(--good);border-color:var(--good)}
+.motiv{text-align:center;font-size:14px;color:var(--brand-d);font-weight:600;padding:6px}
+
+/* Age selector */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+.chip{padding:9px 14px;border-radius:20px;border:1.5px solid var(--line);background:#fff;font-size:13px;font-weight:600;cursor:pointer;transition:.15s}
+.chip.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+.rec .row{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.rec .row:last-child{border-bottom:0}
+.rec .k{font-size:22px;width:30px;text-align:center}
+.rec .v b{display:block;font-size:14px}
+.rec .v span{font-size:13px;color:var(--muted)}
+
+/* Buy cards */
+.prod{display:flex;gap:12px;align-items:center}
+.prod .emoji{font-size:30px;width:46px;height:46px;border-radius:12px;background:var(--brand-l);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.prod .info{flex:1}
+.prod .info b{font-size:15px}
+.prod .info p{margin:2px 0 0;font-size:12px;color:var(--muted)}
+.btn{display:inline-block;background:var(--brand);color:#fff;text-decoration:none;padding:9px 14px;border-radius:12px;font-weight:700;font-size:13px;border:none}
+.btn.ghost{background:var(--brand-l);color:var(--brand-d)}
+
+/* Useful list */
+.link{display:flex;gap:12px;align-items:center;text-decoration:none;color:inherit;padding:12px 0;border-bottom:1px solid var(--line)}
+.link:last-child{border-bottom:0}
+.link .em{font-size:24px;width:34px;text-align:center}
+.link .tx b{font-size:15px;display:block}
+.link .tx span{font-size:12px;color:var(--muted)}
+.link .go{margin-left:auto;color:var(--brand);font-size:18px}
+.pill{display:inline-block;font-size:11px;font-weight:700;color:var(--accent);background:#fff2ec;padding:2px 8px;border-radius:10px;margin-left:6px;vertical-align:middle}
+
+/* Nav */
+nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:flex;box-shadow:0 -4px 14px rgba(0,0,0,.05);z-index:20}
+nav button{flex:1;background:none;border:none;padding:9px 4px 8px;font-family:inherit;color:var(--muted);font-size:11px;font-weight:600;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px}
+nav button .ni{font-size:20px}
+nav button.on{color:var(--brand-d)}
+.note{font-size:11px;color:var(--muted);text-align:center;padding:6px 10px 2px}
+.edit-hint{background:#fff8ec;border:1px dashed #f0c98a;border-radius:12px;padding:10px 12px;font-size:12px;color:#8a6d3b;margin-bottom:14px}
+</style>
+</head>
+<body>
+
+<header><div class="h-in">
+  <h1>🦷 Гигиена полости рта</h1>
+  <p>Трекер привычек, подбор пасты и щётки, полезные материалы</p>
+</div></header>
+
+<div class="wrap">
+
+  <!-- ===== ТРЕКЕР ===== -->
+  <section class="tab active" id="t-tracker">
+    <div class="card streak">
+      <div class="big" id="streakNum">0</div>
+      <div><div style="font-weight:700">дней подряд 🔥</div><div class="lbl">Чистим зубы утром и вечером</div></div>
+    </div>
+    <div class="date" id="today"></div>
+    <div id="tasks"></div>
+    <div class="motiv" id="motiv"></div>
+  </section>
+
+  <!-- ===== ПОДБОР ===== -->
+  <section class="tab" id="t-age">
+    <div class="edit-hint">✏️ Пример-заглушка. Айнура, проверьте и отредактируйте рекомендации под свою методику.</div>
+    <div class="section-title">Выберите возраст</div>
+    <div class="chips" id="ageChips"></div>
+    <div class="card rec" id="ageRec"></div>
+  </section>
+
+  <!-- ===== КУПИТЬ ===== -->
+  <section class="tab" id="t-buy">
+    <div class="edit-hint">✏️ Пример-заглушка. Вставьте реальные товары и свои ссылки (маркетплейсы/аптеки).</div>
+    <div id="products"></div>
+  </section>
+
+  <!-- ===== ПОЛЕЗНОЕ ===== -->
+  <section class="tab" id="t-useful">
+    <div class="edit-hint">✏️ Пример-заглушка. Добавьте свои статьи, гайды и записи эфиров со ссылками.</div>
+    <div class="card"><div id="useful"></div></div>
+  </section>
+
+  <div class="note">Приложение носит информационный характер и не заменяет консультацию врача.</div>
+</div>
+
+<nav>
+  <button class="on" data-tab="t-tracker"><span class="ni">🪥</span>Трекер</button>
+  <button data-tab="t-age"><span class="ni">🎯</span>Подбор</button>
+  <button data-tab="t-buy"><span class="ni">🛒</span>Купить</button>
+  <button data-tab="t-useful"><span class="ni">📚</span>Полезное</button>
+</nav>
+
+<script>
+/* ---------- Навигация ---------- */
+document.querySelectorAll('nav button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.getElementById(b.dataset.tab).classList.add('active');
+    window.scrollTo(0,0);
+  };
+});
+
+/* ---------- ТРЕКЕР ---------- */
+const TASKS=[
+  {id:'am',ic:'🌅',t:'Чистка утром',s:'2 минуты, после завтрака'},
+  {id:'pm',ic:'🌙',t:'Чистка вечером',s:'2 минуты, перед сном'},
+  {id:'floss',ic:'🧵',t:'Зубная нить / ёршик',s:'1 раз в день'},
+  {id:'tongue',ic:'👅',t:'Чистка языка',s:'скребком или щёткой'},
+];
+const KEY='oralhy_v1';
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}}
+function save(d){localStorage.setItem(KEY,JSON.stringify(d))}
+function todayKey(){const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()}
+function fmtDate(){const d=new Date();return d.toLocaleDateString('ru-RU',{weekday:'long',day:'numeric',month:'long'})}
+
+function renderTasks(){
+  const data=load(); const tk=todayKey(); const day=data[tk]||{};
+  const box=document.getElementById('tasks'); box.innerHTML='';
+  TASKS.forEach(t=>{
+    const done=!!day[t.id];
+    const el=document.createElement('div');
+    el.className='task'+(done?' done':'');
+    el.innerHTML=`<div class="ic">${t.ic}</div><div class="t">${t.t}<small>${t.s}</small></div><div class="check">${done?'✓':''}</div>`;
+    el.onclick=()=>{
+      const d=load(); if(!d[tk])d[tk]={}; d[tk][t.id]=!d[tk][t.id]; save(d); renderTasks(); updateStreak();
+    };
+    box.appendChild(el);
+  });
+  document.getElementById('today').textContent=fmtDate();
+  const all=TASKS.every(t=>day[t.id]);
+  const core=day.am&&day.pm;
+  document.getElementById('motiv').textContent = all?'🎉 Идеально! Все привычки выполнены':core?'👍 Отлично, зубы вычищены!':'Отметьте, что уже сделали сегодня';
+}
+function updateStreak(){
+  const data=load(); let streak=0; const d=new Date();
+  for(let i=0;i<400;i++){
+    const k=d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+    const day=data[k];
+    if(day&&day.am&&day.pm){streak++; d.setDate(d.getDate()-1);}
+    else{ if(i===0){d.setDate(d.getDate()-1); continue;} break; }
+  }
+  document.getElementById('streakNum').textContent=streak;
+}
+renderTasks(); updateStreak();
+
+/* ---------- ПОДБОР ПО ВОЗРАСТУ (заглушки — отредактировать) ---------- */
+const AGES=[
+  {id:'0-3',label:'0–3 года',rec:[
+    ['🦷','Паста','Фторид 1000 ppm, объём «с рисовое зёрнышко» (мазок)'],
+    ['🪥','Щётка','Мягкая, маленькая головка, толстая ручка; или напальчник до появления зубов'],
+    ['👪','Кто чистит','Чистит взрослый, 2 раза в день'],
+    ['💡','Совет','Не полоскать активно — просто сплюнуть излишки'],
+  ]},
+  {id:'3-6',label:'3–6 лет',rec:[
+    ['🦷','Паста','Фторид 1000 ppm, объём «с горошину»'],
+    ['🪥','Щётка','Мягкая, детская, менять раз в 3 мес'],
+    ['👪','Кто чистит','Ребёнок под контролем взрослого'],
+    ['💡','Совет','Учим технике; таймер на 2 минуты'],
+  ]},
+  {id:'6-12',label:'6–12 лет',rec:[
+    ['🦷','Паста','Фторид 1450 ppm, объём «с горошину»'],
+    ['🪥','Щётка','Мягкая/средняя; смена молочных зубов — аккуратно'],
+    ['🧵','Дополнительно','Зубная нить, при брекетах — ёршики'],
+    ['💡','Совет','Контроль родителей до уверенной техники'],
+  ]},
+  {id:'teen',label:'Подросток',rec:[
+    ['🦷','Паста','Фторид 1450 ppm'],
+    ['🪥','Щётка','Мягкая/средняя или электрическая'],
+    ['🧵','Дополнительно','Нить/ирригатор; при брекетах — особый уход'],
+    ['💡','Совет','Ополаскиватель по показаниям'],
+  ]},
+  {id:'adult',label:'Взрослый',rec:[
+    ['🦷','Паста','Фторид 1450 ppm; спец-пасты по показаниям'],
+    ['🪥','Щётка','Мягкая/средняя или электрическая'],
+    ['🧵','Дополнительно','Нить/ёршики/ирригатор ежедневно'],
+    ['💡','Совет','Профгигиена у стоматолога 1–2 раза в год'],
+  ]},
+  {id:'preg',label:'Беременность',rec:[
+    ['🦷','Паста','Фторид 1450 ppm; мягкий уход за дёснами'],
+    ['🪥','Щётка','Мягкая; при тошноте — паста без резкого вкуса'],
+    ['🩺','Важно','Наблюдение у стоматолога, дёсны более чувствительны'],
+    ['💡','Совет','Тщательная гигиена — профилактика гингивита беременных'],
+  ]},
+];
+const chips=document.getElementById('ageChips');
+AGES.forEach((a,i)=>{
+  const c=document.createElement('div'); c.className='chip'+(i===0?' active':''); c.textContent=a.label;
+  c.onclick=()=>{document.querySelectorAll('#ageChips .chip').forEach(x=>x.classList.remove('active'));c.classList.add('active');showAge(a)};
+  chips.appendChild(c);
+});
+function showAge(a){
+  document.getElementById('ageRec').innerHTML=a.rec.map(r=>`<div class="row"><div class="k">${r[0]}</div><div class="v"><b>${r[1]}</b><span>${r[2]}</span></div></div>`).join('');
+}
+showAge(AGES[0]);
+
+/* ---------- КУПИТЬ (заглушки — вставить свои ссылки) ---------- */
+const PRODUCTS=[
+  {em:'🪥',n:'Детская мягкая щётка',d:'0–6 лет, маленькая головка',url:'#'},
+  {em:'🦷',n:'Паста с фтором 1000 ppm',d:'для малышей',url:'#'},
+  {em:'🦷',n:'Паста с фтором 1450 ppm',d:'дети 6+ и взрослые',url:'#'},
+  {em:'🧵',n:'Зубная нить',d:'ежедневный уход',url:'#'},
+  {em:'💧',n:'Ирригатор',d:'для брекетов и имплантов',url:'#'},
+  {em:'👅',n:'Скребок для языка',d:'свежее дыхание',url:'#'},
+];
+document.getElementById('products').innerHTML=PRODUCTS.map(p=>`
+  <div class="card prod">
+    <div class="emoji">${p.em}</div>
+    <div class="info"><b>${p.n}</b><p>${p.d}</p></div>
+    <a class="btn" href="${p.url}" target="_blank" rel="noopener">Купить</a>
+  </div>`).join('');
+
+/* ---------- ПОЛЕЗНОЕ (заглушки — добавить свои материалы) ---------- */
+const USEFUL=[
+  {em:'📄',t:'Как правильно чистить зубы',s:'Гайд · 3 мин',tag:'Гайд',url:'#'},
+  {em:'🎥',t:'Запись эфира: гигиена у детей',s:'Видео · 20 мин',tag:'Эфир',url:'#'},
+  {em:'📄',t:'Когда вести ребёнка к ортодонту',s:'Статья',tag:'Статья',url:'#'},
+  {em:'📄',t:'Уход при брекетах',s:'Гайд',tag:'Гайд',url:'#'},
+  {em:'🎥',t:'Мифы о фторе',s:'Видео',tag:'Эфир',url:'#'},
+];
+document.getElementById('useful').innerHTML=USEFUL.map(u=>`
+  <a class="link" href="${u.url}" target="_blank" rel="noopener">
+    <div class="em">${u.em}</div>
+    <div class="tx"><b>${u.t}<span class="pill">${u.tag}</span></b><span>${u.s}</span></div>
+    <div class="go">›</div>
+  </a>`).join('');
+</script>
+</body>
+</html>
